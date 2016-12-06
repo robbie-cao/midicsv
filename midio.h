@@ -1,8 +1,11 @@
 /*
+ *
+ *    	    MIDI I/O Function Definitions
+ *
+ */
 
-    	    MIDI I/O Function Definitions
-
-*/
+#ifndef __MIDIIO_H__
+#define __MIDIIO_H__
 
 extern long readlong(FILE *fp);
 extern short readshort(FILE *fp);
@@ -15,3 +18,5 @@ extern void writeshort(FILE *fp, const short s);
 extern void writeVarLen(FILE *fp, const vlint v);
 extern void writeMidiFileHeader(FILE *fp, struct mhead *h);
 extern void writeMidiTrackHeader(FILE *fp, struct mtrack *t);
+
+#endif

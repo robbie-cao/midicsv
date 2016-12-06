@@ -1,8 +1,11 @@
 /*
+ *
+ *                       MIDI File Definitions
+ *
+ */
 
-                       MIDI File Definitions  
-
-*/
+#ifndef __MIDIFILE_H__
+#define __MIDIFILE_H__
 
 /*  MIDI command codes  */
 
@@ -61,12 +64,14 @@ typedef enum {
     SequencerSpecificMetaEvent = 0x7F
 } midifile_meta_event;
 
-/*  The following structures are for in-memory manipulation of MIDI
-    file components and must not be used for reading or writing
-    MIDI files to external media.  MIDI files must be written in
-    big-endian byte order with no padding to word boundaries and
-    I/O code must comply with this format regardless of the host's
-    in-memory representation.  */
+/*
+ * The following structures are for in-memory manipulation of MIDI
+ * file components and must not be used for reading or writing
+ * MIDI files to external media.  MIDI files must be written in
+ * big-endian byte order with no padding to word boundaries and
+ * I/O code must comply with this format regardless of the host's
+ * in-memory representation.
+ */
 
 /*  MIDI file header  */
 
@@ -88,3 +93,5 @@ struct mtrack {
     char chunktype[4];                /* Chunk type: "MTrk" */
     long length;                      /* Length of track */
 };
+
+#endif

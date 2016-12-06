@@ -1,8 +1,8 @@
 /*
-
-		   MIDI File Input/Output Utilities
-
-*/
+ *
+ *		   MIDI File Input/Output Utilities
+ *
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,10 +41,10 @@ vlint readVarLen(FILE *fp)
     int ch;
 
     if ((value = getc(fp)) & 0x80) {
-	value &= 0x7F;
-	do {
-	    value = (value << 7) | ((ch = getc(fp)) & 0x7F);
-	} while (ch & 0x80);
+        value &= 0x7F;
+        do {
+            value = (value << 7) | ((ch = getc(fp)) & 0x7F);
+        } while (ch & 0x80);
     }
     return value;
 }
@@ -99,18 +99,18 @@ void writeVarLen(FILE *fp, const vlint v)
 
     buffer = value & 0x7F;
     while ((value >>= 7) > 0) {
-	buffer <<= 8;
-	buffer |= 0x80;
-	buffer += (value & 0x7F);
+        buffer <<= 8;
+        buffer |= 0x80;
+        buffer += (value & 0x7F);
     }
 
     while (1) {
-	putc((int) (buffer & 0xFF), fp);
-	if (buffer & 0x80) {
-	    buffer >>= 8;
-	} else {
-	    break;
-	}
+        putc((int) (buffer & 0xFF), fp);
+        if (buffer & 0x80) {
+            buffer >>= 8;
+        } else {
+            break;
+        }
     }
 }
 
